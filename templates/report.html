@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang=""en>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report for {{report_dt_str}}</title>
+    <style>
+        body {
+            margin: 2em;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #555;
+            border-collapse: collapse;
+            padding: 0.25em;
+        }
+    </style>
+</head>
+
+<body class="container">
+    <img class="img-fluid" src="data:image/png;base64, {{logo_img}}" alt="logo"
+        style="float: left; width:50px; height: 50px; margin-right: 0.5em;">
+    <div>
+        <span> 2 years report for {{repoert_dt_str}}</span>
+    </div>
+    <hr>
+    <div style="margin-top: 2em;"></div>
+    <details>
+        <summary style="font-size: 1.2em; cursor: pointer;">Kliknij, aby rozwinąć tabelę z danymi</summary>
+        <table class="table" style="margin-top: 1em;">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Code</th>
+                    <th>Month</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in mock_data_tbl_rows %}
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.code}}</td>
+                    <td>{{item.month}}</td>
+                    <td>{{item.Value}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </details>
+
+
+    <h2>Top performing items</h2>
+    <ul class="list-group">
+        {% for item in top_items_rows %}
+        <li class="list-group-item">{{item}}</li>
+        {% endfor %}
+    </ul>
+    <p style="page-break-after: always;">&nbsp;</p>
+    <h2>Revenue Bar Chart</h2>
+    <div>
+        {{ v_p_c_bar_chart_html | safe}}
+    </div>
+    <h2>Revenue Line Plot</h2>
+    <div>
+        {{v_p_d_line_plot_html | safe}}
+    </div>
+</body>
+
+</html>
